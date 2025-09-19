@@ -45,7 +45,14 @@ registrationForm.addEventListener("submit", (e) => {
   const city = document.getElementById("city").value.trim();
 
   if (name && country && city) {
-    localStorage.setItem("timerUser", JSON.stringify({ name, country, city }));
+    // Generate a new player_id if not already in localStorage
+    let playerId = localStorage.getItem("player_id");
+    if (!playerId) {
+      playerId = crypto.randomUUID();
+      localStorage.setItem("player_id", playerId);
+    }
+
+    localStorage.setItem("timerUser", JSON.stringify({ player_id: playerId, name, country, city }));
     registrationScreen.classList.add("hidden");
     gameScreen.classList.remove("hidden");
   }
@@ -85,31 +92,32 @@ tryAgainBtn.addEventListener("click", () => {
   stopBtn.disabled = true;
   timerDisplay.textContent = "0.000s";
 });
+
 saveProgressBtn.addEventListener("click", async () => {
   const user = JSON.parse(localStorage.getItem("timerUser"));
   if (!user) return;
 
-  const { data: existing } = await supabase
-    .from("leaderboard")
-    .select("*")
-    .eq("name", user.name)
-    .eq("country", user.country)
-    .eq("city", user.city)
-    .single();
-
-  if (existing) {
-    await supabase
-      .from("leaderboard")
-      .update({ time: lastResult.time, diff: lastResult.diff })
-      .eq("id", existing.id);
-  } else {
-    await supabase.from("leaderboard").insert([
-      { name: user.name, country: user.country, city: user.city, time: lastResult.time, diff: lastResult.diff }
-    ]);
+  // Ensure player_id exists in localStorage
+  if (!user.player_id) {
+    user.player_id = crypto.randomUUID();
+    localStorage.setItem("timerUser", JSON.stringify(user));
   }
+
+  await supabase.from("leaderboard").upsert(
+    {
+      player_id: user.player_id,
+      name: user.name,
+      country: user.country,
+      city: user.city,
+      time: lastResult.time,
+      diff: lastResult.diff
+    },
+    { onConflict: ["player_id"] }
+  );
 
   showLeaderboard('play'); 
 });
+
 async function showLeaderboard(mode) {
   resultPopup.classList.add("hidden");
   gameScreen.classList.add("hidden");

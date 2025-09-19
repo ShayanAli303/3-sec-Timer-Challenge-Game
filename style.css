@@ -1,0 +1,255 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: url('sbg.png') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+}
+h1, h2 {
+  font-family: 'Audiowide', sans-serif;
+}
+
+.container, .screen {
+  text-align: center;
+  padding: 30px 50px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  background: 
+    linear-gradient(145deg, #1a1a1a, #2a2a2a, #1f1f1f),
+    url('insidebg.png') center/cover no-repeat;
+  background-blend-mode: overlay;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7), inset 0 2px 5px rgba(255,255,255,0.05);
+}
+
+
+
+#timer-display {
+  font-size: 5rem;
+  margin: 20px 0;
+  color: #ffdd59;
+}
+
+button {
+  font-family: 'Quantico', sans-serif;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+#start-btn {
+  background: #28a745;
+  color: white;
+}
+
+#stop-btn {
+  background: #dc3545;
+  color: white;
+}
+
+#start-game-btn, #registration-form button, #try-again-btn, #save-progress-btn, #back-to-game-btn, #to-game-btn {
+  background: #007bff;
+  color: white;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #222;
+  color: #fff;
+  width: 80%;
+  max-width: 300px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.85);
+}
+
+.popup-content {
+  background: 
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+    url('resultbg.png') no-repeat center center;
+  background-size: cover;
+  padding: 30px 50px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+#result-popup button {
+  margin: 10px;
+}
+
+#leaderboard-screen {
+  width: 100%;
+}
+
+#leaderboard-screen table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  table-layout: fixed;
+  word-wrap: break-word;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+#leaderboard-screen th, #leaderboard-screen td {
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 8px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+#leaderboard-screen th {
+  background: linear-gradient(145deg, #555, #333);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: inset 0 -2px 5px rgba(0,0,0,0.5);
+}
+
+#leaderboard-screen td {
+  background: #2a2a2a;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#leaderboard-screen tr:nth-child(even) td {
+  background: #1f1f1f;
+}
+
+#leaderboard-screen tr:hover td {
+  background: #444;
+  transform: scale(1.02);
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.1);
+}
+#leaderboard-screen tbody tr:nth-child(1) td {
+  color: gold;
+  font-weight: bold;
+}
+#leaderboard-screen tbody tr:nth-child(2) td {
+  color: silver;
+  font-weight: bold;
+}
+#leaderboard-screen tbody tr:nth-child(3) td {
+  color: #cd7f32;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.top-right-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ffc107;
+  color: #111;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 10;
+}
+
+.top-right-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+
+@media (max-width: 768px) {
+  .container, .screen, .popup-content {
+    padding: 20px 30px;
+  }
+
+  #timer-display {
+    font-size: 4rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  input {
+    width: 90%;
+    font-size: 0.9rem;
+  }
+
+  #leaderboard-screen th, #leaderboard-screen td {
+    font-size: 0.8rem;
+    padding: 6px 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  #timer-display {
+    font-size: 3rem;
+  }
+
+  .container, .screen, .popup-content {
+    padding: 15px 20px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  #leaderboard-screen th, #leaderboard-screen td {
+    font-size: 0.75rem;
+    padding: 4px 2px;
+  }
+}
+#leaderboard-scroll {
+  max-height: 50vh; 
+  overflow-y: auto;
+  margin: 20px 0;
+}
+@media (max-width: 768px) {
+  #leaderboard-scroll {
+    max-height: 40vh;
+  }
+}
+
+@media (max-width: 480px) {
+  #leaderboard-scroll {
+    max-height: 35vh;
+  }
+}
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-Second Timer Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Quantico:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="start-screen" class="screen">
+    <h1>🎯 3-Second Timer Challenge</h1>
+    <button id="start-game-btn">Start Game</button>
+  </div>
+
+  <div id="registration-screen" class="screen hidden">
+    <h2>📝 Register for Leaderboard</h2>
+    <form id="registration-form">
+      <input type="text" id="name" placeholder="Enter Name" required>
+      <input type="text" id="country" placeholder="Enter Country" required>
+      <input type="text" id="city" placeholder="Enter City" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <div id="game-screen" class="container hidden">
+    <button id="leaderboard-btn" class="top-right-btn">🏆 Leaderboard</button>
+    <h1>🎯 3-Second Timer Challenge</h1>
+    <div id="timer-display">0.000s</div>
+    <div class="buttons">
+      <button id="start-btn">Start Timer</button>
+      <button id="stop-btn" disabled>Stop Timer</button>
+    </div>
+  </div>
+
+  <div id="result-popup" class="popup hidden">
+    <div class="popup-content">
+      <h2>⏱️ Result</h2>
+      <p>Your Time: <span id="final-time">0.000</span>s</p>
+      <p>Difference from 3s: <span id="time-diff">0.000</span>s</p>
+      <button id="try-again-btn">Try Again</button>
+      <button id="save-progress-btn">Save Progress</button>
+    </div>
+  </div>
+
+  <div id="leaderboard-screen" class="screen hidden">
+    <h2>🏆 Leaderboard</h2>
+    <div id="leaderboard-scroll">
+      <table id="leaderboard-table" border="1" style="margin:auto; border-collapse:collapse; width:80%; color:white;">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Time (s)</th>
+            <th>Diff (s)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <button id="to-game-btn">Back</button>
+    <button id="back-to-game-btn">Play Again</button>
+  </div>
+
+
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
